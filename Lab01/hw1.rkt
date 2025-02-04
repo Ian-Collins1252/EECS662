@@ -40,7 +40,9 @@
 ;; Compute n!
 (define (fact n)
   ;; TODO
-  1)
+  (match n
+    [0 1]
+    [n (* n (fact (- 1 n)))]))
 
 (module+ test
   (check-equal? (fact 0) 1)
@@ -52,7 +54,10 @@
 ;; Compute nth Fibonnaci number
 (define (fib n)
   ;; TODO
-  0)
+  (match n
+    [0 1]
+    [1 1]
+    [(+ n (fib n -1))]))
 
 (module+ test
   (check-equal? (fib 0) 0)
@@ -74,7 +79,8 @@
 ;; Select the longer of the two strings (or first if same length)
 (define (longer s1 s2)
   ;; TODO
-  s1)
+  (if (compare-infix string-length<=> s1 >= s2) s1 s2))
+
 
 (module+ test
   (check-equal? (longer "" "") "")
