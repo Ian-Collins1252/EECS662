@@ -79,7 +79,7 @@
 ;; Select the longer of the two strings (or first if same length)
 (define (longer s1 s2)
   ;; TODO
-  (if (compare-infix string-length<=> s1 >= s2) s1 s2))
+  (if (string>=? s1 s2) s1 s2))
 
 
 (module+ test
@@ -92,7 +92,9 @@
 ;; Explode a string into a list of length-1 strings
 (define (explode s)
   ;; TODO
-  '())
+  let '()
+  (open-input-string s)
+  (for ([c (read-string 1 s)])))
 
 (module+ test
   (check-equal? (explode "") '())
@@ -127,7 +129,7 @@
 ;; Compute the length of given list of numbers
 (define (length-lon ls)
   ;; TODO
-  0)
+  (length ls))
 
 (module+ test
   (check-equal? (length-lon '()) 0)
@@ -139,7 +141,9 @@
 ;; Compute the sum of given list of numbers
 (define (sum ls)
   ;; TODO
-  0)
+  (match ls
+    ['() 0]
+    [(cons l ls) (+ l (sum ls))]))
 
 (module+ test
   (check-equal? (sum '()) 0)
@@ -152,7 +156,7 @@
 ;; ASSUME: lists have equal length
 (define (zip-add ls1 ls2)
   ;; TODO
-  '())
+  (map (lambda (x y) (+ x y)) ls1 ls2))
 
 (module+ test
   (check-equal? (zip-add '() '()) '())
@@ -175,7 +179,7 @@
 ;; Compute max element of non-empty list of numbers
 (define (max-lon xs)
   ;; TODO
-  0)
+  )
 
 (module+ test
   (check-equal? (max-lon '(1)) 1)
